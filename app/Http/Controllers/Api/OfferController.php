@@ -7,26 +7,24 @@ use Illuminate\Http\Request;
 use App\Models\Offre;
 use App\Http\Requests\StoreOfferRequest;
 use App\Http\Requests\UpdateOfferRequest;
+use OpenApi\Attributes as OA;
 
 
 
 class OfferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-
-    /**
- * @OA\Get(
- *     path="/api/offres",
- *     summary="Lister toutes les offres",
- *     tags={"Offres"},
- *     @OA\Response(
- *         response=200,
- *         description="Liste des offres récupérée avec succès"
- *     )
- * )
- */
+    
+#[OA\Get(
+    path: "/api/offres",
+    summary: "Lister toutes les offres",
+    tags: ["Offres"],
+    responses: [
+        new OA\Response(
+            response: 200,
+            description: "Liste des offres récupérée avec succès"
+        )
+    ]
+)]
     public function index()
     {
            $offres = Offre::latest()->get();

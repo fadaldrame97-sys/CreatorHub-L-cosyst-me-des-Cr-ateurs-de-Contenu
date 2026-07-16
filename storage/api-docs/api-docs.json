@@ -12,6 +12,20 @@
         }
     ],
     "paths": {
+        "/api/offres": {
+            "get": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Lister toutes les offres",
+                "operationId": "1ad8c9cc0acc58b6150e8e26720f179e",
+                "responses": {
+                    "200": {
+                        "description": "Liste des offres récupérée avec succès"
+                    }
+                }
+            }
+        },
         "/api/test": {
             "get": {
                 "tags": [
@@ -28,6 +42,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Offres",
+            "description": "Offres"
+        },
         {
             "name": "Test",
             "description": "Test"
