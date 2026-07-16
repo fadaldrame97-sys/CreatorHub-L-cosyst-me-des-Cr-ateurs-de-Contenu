@@ -6,3 +6,5 @@ use App\Http\Controllers\Api\OfferController;
 
 Route::get('/test', [TestController::class, 'index']);
 Route::get('/offres', [OfferController::class, 'index']);
+
+Route::apiResource('offres', OfferController::class);

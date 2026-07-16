@@ -32,9 +32,17 @@ class OfferController extends Controller
            return response()->json($offres);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+   #[OA\Post(
+    path: "/api/offres",
+    summary: "Créer une nouvelle offre",
+    tags: ["Offres"],
+    responses: [
+        new OA\Response(
+            response: 201,
+            description: "Offre créée avec succès"
+        )
+    ]
+)]
     public function store(StoreOfferRequest $request)
     {
     $offer = Offre::create([
@@ -49,17 +57,49 @@ class OfferController extends Controller
         'data' => $offer
     ], 201);
     }
-    /**
-     * Display the specified resource.
-     */
+   
+
+    #[OA\Get(
+    path: "/api/offres/{id}",
+    summary: "Afficher une offre",
+    tags: ["Offres"],
+    responses: [
+        new OA\Response(
+            response: 200,
+            description: "Offre trouvée"
+        ),
+        new OA\Response(
+            response: 404,
+            description: "Offre introuvable"
+        )
+    ]
+    )]
+
     public function show(Offre $offer)
     {
     return response()->json($offer);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    
+
+    #[OA\Put(
+    path: "/api/offres/{id}",
+    summary: "Modifier une offre",
+    tags: ["Offres"],
+    responses: [
+        new OA\Response(
+            response: 200,
+            description: "Offre modifiée avec succès"
+        ),
+        new OA\Response(
+            response: 404,
+            description: "Offre introuvable"
+        )
+    ]
+    )]
+
+
+
     public function update(UpdateOfferRequest $request, Offre $offer)
    {
     $offer->update($request->validated());
@@ -69,9 +109,28 @@ class OfferController extends Controller
         'data' => $offer
     ]);
      }
-    /**
-     * Remove the specified resource from storage.
-     */
+   
+
+    #[OA\Delete(
+    path: "/api/offres/{id}",
+    summary: "Supprimer une offre",
+    tags: ["Offres"],
+    responses: [
+        new OA\Response(
+            response: 200,
+            description: "Offre supprimée avec succès"
+        ),
+        new OA\Response(
+            response: 404,
+            description: "Offre introuvable"
+        )
+    ]
+    )]
+
+
+
+
+
     public function destroy(Offre $offre)
     {
     $offre->delete();

@@ -24,6 +24,65 @@
                         "description": "Liste des offres récupérée avec succès"
                     }
                 }
+            },
+            "post": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Créer une nouvelle offre",
+                "operationId": "06984a0bba650db64aedbd14e79b4736",
+                "responses": {
+                    "201": {
+                        "description": "Offre créée avec succès"
+                    }
+                }
+            }
+        },
+        "/api/offres/{id}": {
+            "get": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Afficher une offre",
+                "operationId": "6896d86f6130d6d423825df0c6d2004a",
+                "responses": {
+                    "200": {
+                        "description": "Offre trouvée"
+                    },
+                    "404": {
+                        "description": "Offre introuvable"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Modifier une offre",
+                "operationId": "393ef2daeb54a5d9c95acf0c98eb5b8c",
+                "responses": {
+                    "200": {
+                        "description": "Offre modifiée avec succès"
+                    },
+                    "404": {
+                        "description": "Offre introuvable"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Supprimer une offre",
+                "operationId": "89b2f98fe2ba17929d48963fbb2c48fb",
+                "responses": {
+                    "200": {
+                        "description": "Offre supprimée avec succès"
+                    },
+                    "404": {
+                        "description": "Offre introuvable"
+                    }
+                }
             }
         },
         "/api/test": {
