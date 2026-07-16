@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Offre extends Model
 {
+
+    protected $table = 'offers';
+
     protected $fillable = [
         'title',
         'description',

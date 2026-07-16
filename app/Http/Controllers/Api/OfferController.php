@@ -32,17 +32,36 @@ class OfferController extends Controller
            return response()->json($offres);
     }
 
-   #[OA\Post(
+
+
+
+
+
+
+  #[OA\Post(
     path: "/api/offres",
     summary: "Créer une nouvelle offre",
     tags: ["Offres"],
-    responses: [
-        new OA\Response(
-            response: 201,
-            description: "Offre créée avec succès"
+    requestBody: new OA\RequestBody(
+        required: true,
+        content: new OA\JsonContent(
+            required: ["title", "description", "budget"],
+            properties: [
+                new OA\Property(property: "title", type: "string", example: "Recherche Graphiste"),
+                new OA\Property(property: "description", type: "string", example: "Création d'un logo"),
+                new OA\Property(property: "budget", type: "number", example: 1000)
+            ]
         )
+    ),
+    responses: [
+        new OA\Response(response: 201, description: "Offre créée avec succès")
     ]
 )]
+
+
+
+
+
     public function store(StoreOfferRequest $request)
     {
     $offer = Offre::create([
