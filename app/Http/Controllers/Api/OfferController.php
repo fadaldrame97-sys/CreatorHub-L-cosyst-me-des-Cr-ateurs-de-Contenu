@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Offre;
+use App\Http\Requests\StoreOfferRequest;
 
 class OfferController extends Controller
 {
@@ -21,11 +22,20 @@ class OfferController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreOfferRequest $request)
     {
-        //
-    }
+    $offer = Offre::create([
+        'user_id' => 1, 
+        'title' => $request->title,
+        'description' => $request->description,
+        'budget' => $request->budget,
+    ]);
 
+    return response()->json([
+        'message' => 'Offre créée avec succès.',
+        'data' => $offer
+    ], 201);
+    }
     /**
      * Display the specified resource.
      */
