@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Offre;
 
 class OfferController extends Controller
 {
@@ -12,7 +13,9 @@ class OfferController extends Controller
      */
     public function index()
     {
-        //
+           $offres = Offre::latest()->get();
+
+           return response()->json($offres);
     }
 
     /**
