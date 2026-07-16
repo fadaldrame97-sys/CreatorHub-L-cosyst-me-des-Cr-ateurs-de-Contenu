@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Offre;
 use App\Http\Requests\StoreOfferRequest;
+use App\Http\Requests\UpdateOfferRequest;
 
 class OfferController extends Controller
 {
@@ -47,11 +48,15 @@ class OfferController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(UpdateOfferRequest $request, Offre $offer)
+   {
+    $offer->update($request->validated());
 
+    return response()->json([
+        'message' => 'Offre modifiée avec succès.',
+        'data' => $offer
+    ]);
+     }
     /**
      * Remove the specified resource from storage.
      */
