@@ -39,9 +39,9 @@ class OfferController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Offre $offer)
     {
-        //
+    return response()->json($offer);
     }
 
     /**
