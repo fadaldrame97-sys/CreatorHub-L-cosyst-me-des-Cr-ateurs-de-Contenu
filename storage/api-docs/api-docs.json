@@ -12,6 +12,263 @@
         }
     ],
     "paths": {
+        "/api/candidatures": {
+            "get": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Lister toutes les candidatures",
+                "operationId": "30a9056e08770df884c1bc7e730ba381",
+                "responses": {
+                    "200": {
+                        "description": "Liste des candidatures"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Créer une candidature",
+                "operationId": "ae13d3f262331c67269343834a7ed791",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "offer_id"
+                                ],
+                                "properties": {
+                                    "offer_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Candidature créée"
+                    }
+                }
+            }
+        },
+        "/api/candidatures/{id}": {
+            "get": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Afficher une candidature",
+                "operationId": "b03b8f1ebc8abe944715ef56f4a9831d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature trouvée"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Modifier une candidature",
+                "operationId": "1f1143cbd26b67f3baa0c44e38a0afc2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature modifiée"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Supprimer une candidature",
+                "operationId": "1fff35c5111a9e820392c0d65c9d4b44",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature supprimée"
+                    }
+                }
+            }
+        },
+        "/api/offres": {
+            "get": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Lister toutes les offres",
+                "operationId": "1ad8c9cc0acc58b6150e8e26720f179e",
+                "responses": {
+                    "200": {
+                        "description": "Liste des offres récupérée avec succès"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Créer une nouvelle offre",
+                "operationId": "06984a0bba650db64aedbd14e79b4736",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "description",
+                                    "budget"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Recherche Graphiste"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "Création d'un logo"
+                                    },
+                                    "budget": {
+                                        "type": "number",
+                                        "example": 1000
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Offre créée avec succès"
+                    }
+                }
+            }
+        },
+        "/api/offres/{id}": {
+            "get": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Afficher une offre",
+                "operationId": "6896d86f6130d6d423825df0c6d2004a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Identifiant de l'offre",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Offre trouvée"
+                    },
+                    "404": {
+                        "description": "Offre introuvable"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Modifier une offre",
+                "operationId": "393ef2daeb54a5d9c95acf0c98eb5b8c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "title": "Recherche Développeur Laravel",
+                                "description": "Développement API REST",
+                                "budget": 2500
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Offre modifiée avec succès"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Offres"
+                ],
+                "summary": "Supprimer une offre",
+                "operationId": "89b2f98fe2ba17929d48963fbb2c48fb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Identifiant de l'offre",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Offre supprimée avec succès"
+                    },
+                    "404": {
+                        "description": "Offre introuvable"
+                    }
+                }
+            }
+        },
         "/api/test": {
             "get": {
                 "tags": [
@@ -28,6 +285,14 @@
         }
     },
     "tags": [
+        {
+            "name": "Candidatures",
+            "description": "Candidatures"
+        },
+        {
+            "name": "Offres",
+            "description": "Offres"
+        },
         {
             "name": "Test",
             "description": "Test"
