@@ -2,11 +2,6 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Contracts\Validation\ValidationRule;
-use Illuminate\Foundation\Http\FormRequest;
-
-namespace App\Http\Requests;
-
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreCandidatureRequest extends FormRequest
@@ -18,6 +13,9 @@ class StoreCandidatureRequest extends FormRequest
 
     public function rules(): array
     {
-        return [];
+        return [
+            'user_id' => 'required|exists:users,id',
+            'offer_id' => 'required|exists:offers,id',
+        ];
     }
 }
