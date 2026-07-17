@@ -14,7 +14,7 @@ class StoreCandidatureRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => 'required|exists:users,id',
+          
             'offer_id' => 'required|exists:offers,id',
         ];
     }
