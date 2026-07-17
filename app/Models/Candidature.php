@@ -8,7 +8,7 @@ class Candidature extends Model
 {
     protected $fillable = [
         'user_id',
-        'offre_id'
+        'offer_id'
     ];
 
     public function user()
@@ -16,7 +16,7 @@ class Candidature extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function offre()
+    public function offer()
     {
         return $this->belongsTo(Offre::class);
     }
