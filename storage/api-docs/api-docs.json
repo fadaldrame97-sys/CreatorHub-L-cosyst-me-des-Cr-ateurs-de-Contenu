@@ -12,6 +12,119 @@
         }
     ],
     "paths": {
+        "/api/candidatures": {
+            "get": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Lister toutes les candidatures",
+                "operationId": "30a9056e08770df884c1bc7e730ba381",
+                "responses": {
+                    "200": {
+                        "description": "Liste des candidatures"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Créer une candidature",
+                "operationId": "ae13d3f262331c67269343834a7ed791",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "offer_id"
+                                ],
+                                "properties": {
+                                    "offer_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Candidature créée"
+                    }
+                }
+            }
+        },
+        "/api/candidatures/{id}": {
+            "get": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Afficher une candidature",
+                "operationId": "b03b8f1ebc8abe944715ef56f4a9831d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature trouvée"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Modifier une candidature",
+                "operationId": "1f1143cbd26b67f3baa0c44e38a0afc2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature modifiée"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Candidatures"
+                ],
+                "summary": "Supprimer une candidature",
+                "operationId": "1fff35c5111a9e820392c0d65c9d4b44",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature supprimée"
+                    }
+                }
+            }
+        },
         "/api/offres": {
             "get": {
                 "tags": [
@@ -172,6 +285,10 @@
         }
     },
     "tags": [
+        {
+            "name": "Candidatures",
+            "description": "Candidatures"
+        },
         {
             "name": "Offres",
             "description": "Offres"
