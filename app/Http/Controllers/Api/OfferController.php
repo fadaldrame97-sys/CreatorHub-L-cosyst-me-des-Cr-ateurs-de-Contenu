@@ -78,10 +78,19 @@ class OfferController extends Controller
     }
    
 
-    #[OA\Get(
+#[OA\Get(
     path: "/api/offres/{id}",
     summary: "Afficher une offre",
     tags: ["Offres"],
+    parameters: [
+        new OA\Parameter(
+            name: "id",
+            in: "path",
+            required: true,
+            description: "Identifiant de l'offre",
+            schema: new OA\Schema(type: "integer")
+        )
+    ],
     responses: [
         new OA\Response(
             response: 200,
@@ -92,48 +101,76 @@ class OfferController extends Controller
             description: "Offre introuvable"
         )
     ]
-    )]
+)]
 
-    public function show(Offre $offer)
+
+
+
+
+    public function show(Offre $offre)
     {
-    return response()->json($offer);
+    return response()->json($offre);
     }
 
     
 
-    #[OA\Put(
+    
+
+#[OA\Put(
     path: "/api/offres/{id}",
     summary: "Modifier une offre",
     tags: ["Offres"],
+    parameters: [
+        new OA\Parameter(
+            name: "id",
+            in: "path",
+            required: true,
+            schema: new OA\Schema(type: "integer")
+        )
+    ],
+    requestBody: new OA\RequestBody(
+        required: true,
+        content: new OA\JsonContent(
+            example: [
+                "title" => "Recherche Développeur Laravel",
+                "description" => "Développement API REST",
+                "budget" => 2500
+            ]
+        )
+    ),
     responses: [
         new OA\Response(
             response: 200,
             description: "Offre modifiée avec succès"
-        ),
-        new OA\Response(
-            response: 404,
-            description: "Offre introuvable"
         )
     ]
-    )]
+)]
 
 
-
-    public function update(UpdateOfferRequest $request, Offre $offer)
+    public function update(UpdateOfferRequest $request, Offre $offre)
    {
-    $offer->update($request->validated());
+    $offre->update($request->validated());
 
     return response()->json([
         'message' => 'Offre modifiée avec succès.',
-        'data' => $offer
+        'data' => $offre
     ]);
      }
    
 
-    #[OA\Delete(
+   #[OA\Delete(
     path: "/api/offres/{id}",
     summary: "Supprimer une offre",
     tags: ["Offres"],
+    parameters: [
+        new OA\Parameter(
+            name: "id",
+            in: "path",
+            required: true,
+            description: "Identifiant de l'offre",
+            schema: new OA\Schema(type: "integer")
+        )
+    ],
     responses: [
         new OA\Response(
             response: 200,
@@ -144,11 +181,7 @@ class OfferController extends Controller
             description: "Offre introuvable"
         )
     ]
-    )]
-
-
-
-
+)]
 
     public function destroy(Offre $offre)
     {

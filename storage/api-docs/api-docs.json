@@ -74,6 +74,17 @@
                 ],
                 "summary": "Afficher une offre",
                 "operationId": "6896d86f6130d6d423825df0c6d2004a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Identifiant de l'offre",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Offre trouvée"
@@ -89,12 +100,32 @@
                 ],
                 "summary": "Modifier une offre",
                 "operationId": "393ef2daeb54a5d9c95acf0c98eb5b8c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {},
+                            "example": {
+                                "title": "Recherche Développeur Laravel",
+                                "description": "Développement API REST",
+                                "budget": 2500
+                            }
+                        }
+                    }
+                },
                 "responses": {
                     "200": {
                         "description": "Offre modifiée avec succès"
-                    },
-                    "404": {
-                        "description": "Offre introuvable"
                     }
                 }
             },
@@ -104,6 +135,17 @@
                 ],
                 "summary": "Supprimer une offre",
                 "operationId": "89b2f98fe2ba17929d48963fbb2c48fb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Identifiant de l'offre",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Offre supprimée avec succès"
