@@ -2,70 +2,70 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Models\Workspace;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
-     */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'avatar',
+        'bio',
+        'price_per_hour',
+        'role',
     ];
 
-
-
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
-     */
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'price_per_hour' => 'decimal:2',
         ];
     }
 
-    public function workspaces(){
-        return $this->hasMany(workspace::class);
-    }
-    public function skills(){
-        return $this->hasMany(Skill::class);
-    }
-
-
-    public function offres()
+    // Portfolio
+    public function realisations(): HasMany
     {
-    return $this->hasMany(Offre::class);
-   }
+        return $this->hasMany(Realisation::class);
+    }
 
-   public function candidatures()
-   {
-    return $this->hasMany(Candidature::class);
-   }  
+    // Likes
+    public function likes(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Realisation::class,
+            'likes'
+        )->withTimestamps();
+    }
 
+    // Bookmarks
+    public function saves(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Realisation::class,
+            'saves'
+        )->withTimestamps();
+    }
+
+    // Skills
+    public function skills(): BelongsToMany
+    {
+        return $this->belongsToMany(
+            Skill::class,
+            'skill_user'
+        )->withTimestamps();
+    }
 }
