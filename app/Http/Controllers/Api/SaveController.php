@@ -12,8 +12,7 @@ class SaveController extends Controller
 {
     public function toggle(Realisation $realisation)
     {
-        $user = User::find(1); // Simule le user connecté (temporaire)
-
+$user = auth()->user();
         if ($user->saves()->where('realisation_id', $realisation->id)->exists()) {
             $user->saves()->detach($realisation->id);
             $message = 'Retiré des favoris';

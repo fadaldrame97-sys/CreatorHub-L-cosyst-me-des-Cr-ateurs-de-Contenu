@@ -13,8 +13,7 @@ class LikeController extends Controller
     // Like ou unlike une réalisation
     public function toggle(Realisation $realisation)
     {
-      $user = User::find(1);// Simule le user connecté (temporaire)
-
+$user = auth()->user();
         if ($user->likes()->where('realisation_id', $realisation->id)->exists()) {
             $user->likes()->detach($realisation->id);
             $message = 'Like retiré';
