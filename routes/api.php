@@ -39,26 +39,32 @@ Route::get('/filter/skills',[SearchController::class,'filterBySkill']);
 Route::get('/filter/price',[SearchController::class,'filterByPrice']);
 Route::get('/creators',[SearchController::class,'creators']);
 
-Route::middleware('auth:sanctum')->group(function(){
+// Route::middleware('auth:sanctum')->group(function(){
 
-    Route::apiResource('realisations',RealisationController::class);
+//     Route::apiResource('realisations',RealisationController::class);
 
-    Route::get('/my-realisations',
-        [RealisationController::class,'myPortfolio']);
+//     Route::get('/my-realisations',
+//         [RealisationController::class,'myPortfolio']);
 
-    Route::post('/realisations/{realisation}/like',
-        [LikeController::class,'toggle']);
+//     Route::post('/realisations/{realisation}/like',
+//         [LikeController::class,'toggle']);
 
-    Route::get('/my-likes',
-        [LikeController::class,'index']);
+//     Route::get('/my-likes',
+//         [LikeController::class,'index']);
 
-    Route::post('/realisations/{realisation}/save',
-        [SaveController::class,'toggle']);
+//     Route::post('/realisations/{realisation}/save',
+//         [SaveController::class,'toggle']);
 
-    Route::get('/my-saves',
-        [SaveController::class,'index']);
+//     Route::get('/my-saves',
+//         [SaveController::class,'index']);
 
-});
+// });
+Route::apiResource('realisations',RealisationController::class);
+Route::get('/my-realisations', [RealisationController::class,'myPortfolio']);
+Route::post('/realisations/{realisation}/like', [LikeController::class,'toggle']);
+Route::get('/my-likes', [LikeController::class,'index']);
+Route::post('/realisations/{realisation}/save', [SaveController::class,'toggle']);
+Route::get('/my-saves', [SaveController::class,'index']);
 
 Route::apiResource('skills',SkillController::class);
 

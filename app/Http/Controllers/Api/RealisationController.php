@@ -22,7 +22,7 @@ class RealisationController extends Controller
     public function store(StoreRealisationRequest $request)
     {
         $realisation = Realisation::create([
-            'user_id'     => auth()->id(),
+            'user_id'     => $userId = 1,// Simule le user connecté (temporaire)
             'title'       => $request->title,
             'description' => $request->description,
             'media_url'   => $request->media_url,
