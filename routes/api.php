@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TestController;
+use App\Http\Controllers\Api\AuthController;
 
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\WorkSpaceController;
@@ -19,8 +20,6 @@ use App\Http\Controllers\Api\OfferController;
 use App\Http\Controllers\Api\CandidatureController;
 
 
-Route::get('/test', [TestController::class, 'index']);
-Route::get('/offres', [OfferController::class, 'index']);
 
 Route::apiResource('offres', OfferController::class);
 Route::apiResource('candidatures', CandidatureController::class);
@@ -68,3 +67,19 @@ Route::get('/my-saves', [SaveController::class,'index']);
 
 Route::apiResource('skills',SkillController::class);
 
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::get('/test', [TestController::class, 'index']);
+    Route::get('/offres', [OfferController::class, 'index']);
+
+    Route::apiResource('offres', OfferController::class);
+    Route::apiResource('candidatures', CandidatureController::class);
+
+ 
+});
